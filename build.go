@@ -39,7 +39,9 @@ func (b *Builder) Build(p *Params) {
 		color.Cyan("Building %s...\n", pkg)
 
 		// build package
-		cmd, err := runCommand("go", "build", "-i", "-o", fileName, pkg)
+		// cmd, err := runCommand("go", "build", "-i", "-o", fileName, pkg)
+		cmd, err := runCommand("dlv", "debug", pkg, "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
+
 		if err != nil {
 			log.Fatalf("Could not run 'go build' command: %s", err)
 			continue
@@ -57,7 +59,7 @@ func (b *Builder) Build(p *Params) {
 		log.Println("build completed")
 
 		// and start the new process
-		b.runner.restart(fileName)
+		b.runner.restart(pkg)
 	}
 }
 
