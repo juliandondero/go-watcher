@@ -5,6 +5,7 @@
 package watcher
 
 import (
+	"fmt"
 	"log"
 	"os/exec"
 
@@ -42,8 +43,8 @@ func (r *Runner) Run(p *Params) {
 		}
 
 		r.cmd = cmd
-		removeFile(fileName)
-
+		// removeFile(fileName)
+		fmt.Println(fileName)
 		go func(cmd *exec.Cmd) {
 			if err := cmd.Wait(); err != nil {
 				log.Printf("process interrupted: %s \n", err)
