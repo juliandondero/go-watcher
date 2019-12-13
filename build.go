@@ -1,6 +1,7 @@
 package watcher
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -40,6 +41,7 @@ func (b *Builder) Build(p *Params) {
 
 		// build package
 		// cmd, err := runCommand("go", "build", "-i", "-o", fileName, pkg)
+		fmt.Println("PKG:", pkg)
 		cmd, err := runCommand("dlv", "debug", pkg, "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
 
 		if err != nil {
