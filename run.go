@@ -32,7 +32,7 @@ func (r *Runner) Run(p *Params) {
 	for fileName := range r.start {
 
 		color.Green("Running %s...\n", p.Get("run"))
-		cmd, err := runCommand("dlv", "debug", "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
+		cmd, err := runCommand("dlv", "debug", ".", "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
 		// cmd, err := runCommand(fileName, p.Package...)
 		if err != nil {
 			log.Printf("Could not run the go binary: %s \n", err)
