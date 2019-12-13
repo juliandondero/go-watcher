@@ -31,7 +31,7 @@ func (b *Builder) Build(p *Params) {
 	}()
 
 	for range b.watcher.Wait() {
-		fileName := p.generateBinaryName()
+		// fileName := p.generateBinaryName()
 
 		pkg := p.packagePath()
 
