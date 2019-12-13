@@ -1,7 +1,6 @@
 package watcher
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -41,23 +40,23 @@ func (b *Builder) Build(p *Params) {
 
 		// build package
 		// cmd, err := runCommand("go", "build", "-i", "-o", fileName, pkg)
-		fmt.Println("PKG:", pkg)
-		cmd, err := runCommand("dlv", "debug", pkg, "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
 
-		if err != nil {
-			log.Fatalf("Could not run 'go build' command: %s", err)
-			continue
-		}
+		// cmd, err := runCommand("dlv", "debug", "--headless", "--listen=:2345", "--accept-multiclient", "--api-version=2", "--log")
 
-		if err := cmd.Wait(); err != nil {
-			if err := interpretError(err); err != nil {
-				color.Red("An error occurred while building: %s", err)
-			} else {
-				color.Red("A build error occurred. Please update your code...")
-			}
+		// if err != nil {
+		// 	log.Fatalf("Could not run 'go build' command: %s", err)
+		// 	continue
+		// }
 
-			continue
-		}
+		// if err := cmd.Wait(); err != nil {
+		// 	if err := interpretError(err); err != nil {
+		// 		color.Red("An error occurred while building: %s", err)
+		// 	} else {
+		// 		color.Red("A build error occurred. Please update your code...")
+		// 	}
+
+		// 	continue
+		// }
 		log.Println("build completed")
 
 		// and start the new process
